@@ -115,6 +115,14 @@ not redistributed; reproducible from the official
 [google-research/timesfm](https://github.com/google-research/timesfm) repo
 together with the data and split files in this repo).
 
+> **Reproducing the headline ceiling table.** The 9-method
+> ceiling table is produced by
+> `notebooks/01_direct_prediction_ceiling/03_baseline_models.ipynb`.
+> See [`notebooks/01_direct_prediction_ceiling/README.md`](notebooks/01_direct_prediction_ceiling/README.md)
+> for per-notebook execution order and how to reproduce the
+> two TimesFM rows (which require a separate Python 3.11
+> environment due to a `jaxlib` wheel constraint).
+
 ---
 
 ## Results

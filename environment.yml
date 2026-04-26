@@ -26,4 +26,5 @@ dependencies:
       - PyWavelets==1.6.0
       - pyts==0.13.0
       - ta==0.11.0
+      - pandas_ta==0.3.14b0
       - huggingface-hub==0.24.6

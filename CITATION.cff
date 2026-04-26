@@ -1,15 +1,15 @@
 cff-version: 1.2.0
-# NOTE: Thesis-specific fields in preferred-citation below
-# (authors, institution, year) are TBD pending academic submission
-# (post 2026-04-27). The software-level citation (title, repo URL,
-# license) remains valid for this repository as-is.
+# Thesis-specific fields in preferred-citation below were
+# finalised in time for academic submission (2026-04-29).
+# The software-level citation (title, repo URL, license)
+# also applies for users citing this repository as a dataset
+# rather than as a thesis.
 message: "If you use this code or the accompanying dataset, please cite as below."
 title: "Applying Deep Time-Series Learning to Stock Forecasting and Quant Trading"
 type: software
 authors:
-  - family-names: "<FAMILY-NAME>"
-    given-names: "<GIVEN-NAMES>"
-    orcid: "<OPTIONAL ORCID>"
+  - family-names: "Li"
+    given-names: "Heliang"
 version: "1.0.0"
 date-released: "2026-05-01"
 url: "https://github.com/Heeeeeeliang/Applying-Deep-Time-Series-Learning-to-Stock-Forecasting-and-Quant-Trading"
@@ -32,9 +32,9 @@ preferred-citation:
   type: thesis
   title: "Applying Deep Time-Series Learning to Stock Forecasting and Quant Trading"
   authors:
-    - family-names: "<FAMILY-NAME>"
-      given-names: "<GIVEN-NAMES>"
+    - family-names: "Li"
+      given-names: "Heliang"
   year: 2026
   institution:
-    name: "<INSTITUTION>"
+    name: "University of Leeds"
   thesis-type: "BSc thesis"

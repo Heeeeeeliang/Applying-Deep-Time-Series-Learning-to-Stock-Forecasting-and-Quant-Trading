@@ -28,7 +28,7 @@ maximum drawdown −9.9%, 1,908 trades, profit factor 2.17 (Run 11 — trail-sto
 variant)**.
 
 *The full thesis PDF will be added to this repository after academic
-submission (post April 27, 2026). Citation details will be updated at
+submission (post April 29, 2026). Citation details will be updated at
 that time.*
 
 ---
@@ -167,11 +167,11 @@ and is the single most important component in the system.
 ## Citation
 
 ```bibtex
-@thesis{<KEY>2026,
+@thesis{li2026deepts,
   title   = {Applying Deep Time-Series Learning to Stock Forecasting and Quant Trading},
-  author  = {<FAMILY-NAME>, <GIVEN-NAMES>},
+  author  = {Li, Heliang},
   year    = {2026},
-  school  = {<INSTITUTION>},
+  school  = {University of Leeds},
   type    = {BSc thesis}
 }
 ```

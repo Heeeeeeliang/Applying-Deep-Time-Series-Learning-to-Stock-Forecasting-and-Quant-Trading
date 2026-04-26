@@ -8,7 +8,7 @@ REPO_ROOT="$(cd "$(dirname "$0")" && pwd)"
 HF_DATASET="<USER>/quant-thesis-nasdaq-2020-2022"
 HF_MODELS="<USER>/quant-thesis-checkpoints"
 GH_RELEASE_TAG="v1.0.0"
-GH_REPO="<USER>/<REPO>"
+GH_REPO="Heeeeeeliang/Applying-Deep-Time-Series-Learning-to-Stock-Forecasting-and-Quant-Trading"
 
 if ! command -v huggingface-cli >/dev/null 2>&1; then
   echo "Installing huggingface-hub CLI..."

@@ -79,8 +79,8 @@ a TP signal AND Layer 3 passes the trade through.
 ## Quickstart
 
 ```bash
-git clone https://github.com/<USER>/<REPO>.git
-cd <REPO>
+git clone https://github.com/Heeeeeeliang/Applying-Deep-Time-Series-Learning-to-Stock-Forecasting-and-Quant-Trading.git
+cd Applying-Deep-Time-Series-Learning-to-Stock-Forecasting-and-Quant-Trading
 
 # 1. Environment (conda)
 conda env create -f environment.yml
@@ -265,7 +265,7 @@ hide them.
 ## Related work
 
 - **ApexQuant** — the production trading platform that consumes the models
-  and configs in this repo: `https://github.com/<USER>/apexquant` (placeholder).
+  and configs in this repo: https://github.com/Heeeeeeliang/apexquant.
 - Databento. _NASDAQ TotalView-ITCH historical bars._
   https://databento.com/datasets/XNAS.ITCH
 - Lopez de Prado, M. (2018). _Advances in Financial Machine Learning_.

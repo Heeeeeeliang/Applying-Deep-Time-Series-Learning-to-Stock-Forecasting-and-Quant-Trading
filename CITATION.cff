@@ -12,7 +12,7 @@ authors:
     orcid: "<OPTIONAL ORCID>"
 version: "1.0.0"
 date-released: "2026-05-01"
-url: "https://github.com/<USER>/<REPO>"
+url: "https://github.com/Heeeeeeliang/Applying-Deep-Time-Series-Learning-to-Stock-Forecasting-and-Quant-Trading"
 abstract: >
   A three-layer cascaded task decomposition framework for equity forecasting,
   built on the empirical finding that direct price-direction prediction hits a

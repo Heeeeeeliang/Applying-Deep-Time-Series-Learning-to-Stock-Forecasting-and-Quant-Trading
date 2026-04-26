@@ -21,7 +21,7 @@ Thumbs.db
 *_credentials.json
 service_account*.json
 
-# Large artifacts — published separately (GitHub Release or HuggingFace)
+# Large artifacts — published separately (GitHub Release v1.0.0)
 data/raw/*.csv
 data/processed/**/*_1min*.csv
 data/processed/**/*_1min*.parquet

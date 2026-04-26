@@ -91,12 +91,16 @@ jupyter lab notebooks/training_source.ipynb
 jupyter lab notebooks/01_direct_prediction_ceiling/
 ```
 
-Small shipped artifacts (split indices, checkpoints manifest, architecture
-figures) live in the repo. The Databento-derived OHLCV / feature CSVs and the
-large fine-tuned TimesFM checkpoints (~7.6 GB) live on HuggingFace; smaller
-per-ticker LSTM checkpoints (~70 MB) are attached to each tagged GitHub
-Release. See `data/README.md` and `checkpoints/README.md` for the
-manual-download paths.
+All model checkpoints and processed datasets used in this thesis are
+attached to GitHub Release v1.0.0. See `data/README.md` and
+`checkpoints/README.md` for the per-artifact download commands.
+
+Release v1.0.0 contains every artifact required to reproduce the headline
+backtest (Run 11) and the ceiling study tables, with the exception of the
+fine-tuned TimesFM weights — those are evaluated in this study (weights
+not redistributed; reproducible from the official
+[google-research/timesfm](https://github.com/google-research/timesfm) repo
+together with the data and split files in this repo).
 
 ---
 
@@ -242,10 +246,10 @@ hide them.
 ├── data/
 │   ├── README.md                          ← data card
 │   ├── splits/                            ← train/val/test indices (small, in-repo)
-│   └── ...                                ← processed/, features/, tp_data/, vol_data/ ship via HuggingFace
+│   └── ...                                ← processed/, features/, tp_data/, vol_data/ ship via GitHub Release v1.0.0
 ├── checkpoints/
 │   ├── README.md                          ← manifest + manual-download paths
-│   └── ...                                ← shipped weights (HuggingFace / GitHub Releases)
+│   └── ...                                ← shipped weights via GitHub Release v1.0.0
 └── .gitignore
 ```
 

@@ -88,17 +88,23 @@ files at load time.
 
 ## Hosting
 
-Large files are published as a **HuggingFace dataset**:
-`https://huggingface.co/datasets/<USER>/quant-thesis-nasdaq-2020-2022`
-(link to be filled in on release).
+Large files are published as a single tarball
+(`apexquant_data_v1.tar.gz`, ~1.4 GB) attached to GitHub Release v1.0.0.
 
 What lives where:
 - **In this git repo:** `splits/` (small CSVs), `README.md`, `feature_dictionary.md`, `splits/split_summary.json`, `splits/USAGE_EXAMPLE.py`
-- **On HuggingFace:** everything else (`processed/`, `features/`, `tp_data/`, `vol_data/`, raw Databento bar CSVs)
+- **In Release v1.0.0:** everything else (`processed/`, `features/`, `tp_data/`, `vol_data/`, raw Databento bar CSVs)
 
-Download the HF dataset (e.g. via `huggingface-cli download --repo-type dataset
-<USER>/quant-thesis-nasdaq-2020-2022 --local-dir data/`) so that the layout
-above becomes valid locally.
+Download and verify, from the repository root:
+
+```bash
+gh release download v1.0.0 --pattern "apexquant_data_v1.tar.gz"
+echo "fb94e857c0918f4308956eea0f0de646050c07f90ee21a6d6baec5f5905daaa4  apexquant_data_v1.tar.gz" | sha256sum -c -
+tar -xzf apexquant_data_v1.tar.gz
+```
+
+After extraction, `data/processed/`, `data/features/`, `data/tp_data/`, and
+`data/vol_data/` are populated alongside the existing `data/splits/`.
 
 ## Provenance notes
 

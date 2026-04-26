@@ -1,0 +1,25 @@
+# Ablation run 2
+# Technical (EMA+RSI) + Position Sizing
+
+run_number: 2
+is_final: false
+config: 20260316_140416_ema_rsi_with_sizing
+display_name: Technical (EMA+RSI) + Position Sizing
+description: EMA+RSI signals + vol-proportional sizing (20%/5%)
+fee_structure:
+  commission: 0.001
+  slippage: 0.0005
+  min_commission: 1.0
+ablation:
+  enable_tranches: false
+  enable_signal_reversal: false
+  enable_vol_collapse: false
+  enable_preemption: false
+  enable_trail_stop: false
+overrides:
+  technical:
+    vol_sizing: true
+    vol_lookback: 20
+    vol_high_pct: 0.4
+    vol_high_size: 0.2
+    vol_low_size: 0.05

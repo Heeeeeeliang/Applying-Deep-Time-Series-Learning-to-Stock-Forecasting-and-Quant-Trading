@@ -1,0 +1,28 @@
+name: quant-thesis
+channels:
+  - conda-forge
+  - pytorch
+  - nvidia
+dependencies:
+  - python=3.11
+  - pip=24.0
+  - numpy=1.26.4
+  - pandas=2.2.2
+  - scipy=1.13.1
+  - scikit-learn=1.5.1
+  - matplotlib=3.8.4
+  - seaborn=0.13.2
+  - jupyterlab=4.2.5
+  - tqdm=4.66.5
+  - pyyaml=6.0.2
+  - pytorch=2.3.1
+  - pytorch-cuda=12.1
+  - lightgbm=4.5.0
+  - arch=7.0.0
+  - statsmodels=0.14.2
+  - pip:
+      - timesfm==1.2.6
+      - vmdpy==0.2
+      - pyts==0.13.0
+      - ta==0.11.0
+      - huggingface-hub==0.24.6

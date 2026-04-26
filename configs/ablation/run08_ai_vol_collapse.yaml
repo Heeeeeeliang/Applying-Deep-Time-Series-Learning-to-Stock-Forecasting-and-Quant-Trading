@@ -1,0 +1,21 @@
+# Ablation run 8
+# Vol + Trend Bypass + Turning Point + Direction + Signal Reversal + Vol Collapse
+
+run_number: 8
+is_final: false
+config: 20260316_140416_ai_vol_collapse
+display_name: Vol + Trend Bypass + Turning Point + Direction + Signal Reversal + Vol Collapse
+description: AI + signal reversal + vol collapse exit
+fee_structure:
+  commission: 0.001
+  slippage: 0.0005
+  min_commission: 1.0
+ablation:
+  enable_tranches: false
+  enable_signal_reversal: true
+  enable_vol_collapse: true
+  enable_preemption: false
+  enable_trail_stop: false
+overrides:
+  strategy:
+    dynamic_execution: true

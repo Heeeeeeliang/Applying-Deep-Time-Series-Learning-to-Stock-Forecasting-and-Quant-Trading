@@ -1,0 +1,21 @@
+# Ablation run 4
+# Turning Point + Direction
+
+run_number: 4
+is_final: false
+config: 20260316_140416_ai_no_vol_gate
+display_name: Turning Point + Direction
+description: AI signals, vol gate OFF, trend bypass OFF
+fee_structure:
+  commission: 0.001
+  slippage: 0.0005
+  min_commission: 1.0
+ablation:
+  enable_tranches: false
+  enable_signal_reversal: false
+  enable_vol_collapse: false
+  enable_preemption: false
+  enable_trail_stop: false
+overrides:
+  strategy:
+    dynamic_execution: false

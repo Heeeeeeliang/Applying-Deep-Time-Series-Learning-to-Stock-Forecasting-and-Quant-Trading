@@ -1,0 +1,44 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.ipynb_checkpoints/
+.venv/
+venv/
+
+# OS / editor
+.DS_Store
+Thumbs.db
+~$*
+*.swp
+.vscode/
+.idea/
+
+# Credentials / secrets
+.env
+.env.*
+*.pem
+*_credentials.json
+service_account*.json
+
+# Large artifacts — published separately (GitHub Release or HuggingFace)
+data/raw/*.csv
+data/processed/**/*_1min*.csv
+data/processed/**/*_1min*.parquet
+data/features/
+data/tp_data/*.npz
+data/vol_data/numpy/*.npz
+*.pt
+*.joblib
+*.pkl
+!data/splits/split_summary.json
+
+# Thesis working files — kept locally, not uploaded until post academic
+# submission. Figures used by README have been copied to docs/figures/.
+thesis/
+
+# Source archive bundles (never commit)
+毕设-*.zip
+毕设-*/
+data-2026-*/
+*.zip

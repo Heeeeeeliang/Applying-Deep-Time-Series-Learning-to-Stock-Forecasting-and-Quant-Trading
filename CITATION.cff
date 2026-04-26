@@ -1,0 +1,40 @@
+cff-version: 1.2.0
+# NOTE: Thesis-specific fields in preferred-citation below
+# (authors, institution, year) are TBD pending academic submission
+# (post 2026-04-27). The software-level citation (title, repo URL,
+# license) remains valid for this repository as-is.
+message: "If you use this code or the accompanying dataset, please cite as below."
+title: "Applying Deep Time-Series Learning to Stock Forecasting and Quant Trading"
+type: software
+authors:
+  - family-names: "<FAMILY-NAME>"
+    given-names: "<GIVEN-NAMES>"
+    orcid: "<OPTIONAL ORCID>"
+version: "1.0.0"
+date-released: "2026-05-01"
+url: "https://github.com/<USER>/<REPO>"
+abstract: >
+  A three-layer cascaded task decomposition framework for equity forecasting,
+  built on the empirical finding that direct price-direction prediction hits a
+  systematic ~50% accuracy ceiling across nine baseline methods under strict
+  no-leakage evaluation. Layer 1 predicts realised volatility (LightGBM);
+  Layer 2 localises turning points (MultiScaleCNN with meta-labelling);
+  Layer 3 filters trades. Backtested on 8 NASDAQ tickers, 2020–2022.
+keywords:
+  - deep-learning
+  - time-series
+  - quantitative-finance
+  - stock-forecasting
+  - meta-labeling
+  - volatility-forecasting
+license: MIT
+preferred-citation:
+  type: thesis
+  title: "Applying Deep Time-Series Learning to Stock Forecasting and Quant Trading"
+  authors:
+    - family-names: "<FAMILY-NAME>"
+      given-names: "<GIVEN-NAMES>"
+  year: 2026
+  institution:
+    name: "<INSTITUTION>"
+  thesis-type: "BSc thesis"

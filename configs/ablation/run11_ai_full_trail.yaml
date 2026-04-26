@@ -1,0 +1,23 @@
+# Ablation run 11  ← FINAL
+# Vol + Trend Bypass + TP + Dir + Sig Rev + Vol Collapse + Trail Stop
+
+run_number: 11
+is_final: true
+config: 20260316_140416_ai_full_trail
+display_name: Vol + Trend Bypass + TP + Dir + Sig Rev + Vol Collapse + Trail Stop
+description: AI full with trail stop exits (wider ATR params)
+fee_structure:
+  commission: 0.001
+  slippage: 0.0005
+  min_commission: 1.0
+ablation:
+  enable_tranches: true
+  enable_signal_reversal: true
+  enable_vol_collapse: true
+  enable_preemption: true
+  enable_trail_stop: true
+overrides:
+  strategy:
+    dynamic_execution: true
+    tp_atr_mult: 3.0
+    sl_atr_mult: 1.0

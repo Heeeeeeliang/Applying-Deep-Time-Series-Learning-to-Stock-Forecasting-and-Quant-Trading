@@ -1,0 +1,21 @@
+# Ablation run 9
+# Vol + Trend Bypass + Turning Point + Direction + Tranche Exit
+
+run_number: 9
+is_final: false
+config: 20260316_140416_ai_tranche_exit
+display_name: Vol + Trend Bypass + Turning Point + Direction + Tranche Exit
+description: AI + tranche exit system
+fee_structure:
+  commission: 0.001
+  slippage: 0.0005
+  min_commission: 1.0
+ablation:
+  enable_tranches: true
+  enable_signal_reversal: false
+  enable_vol_collapse: false
+  enable_preemption: false
+  enable_trail_stop: false
+overrides:
+  strategy:
+    dynamic_execution: true

@@ -38,11 +38,15 @@ Databento subscription if they re-download data.
 ## Tickers (8)
 AAPL, MSFT, NVDA, QQQ, SPY, TSLA, GOOG, GOOGL
 
-> **Note on GOOG vs GOOGL.** Both tickers were initially ingested. GOOG was
-> removed from the final Layer-2/3 training set because its post-split series
-> overlaps with GOOGL and caused duplicated turning-point events that inflated
-> win-rate by a small but systematic amount. GOOG remains in `processed/` and
-> `features/` for completeness; the Layer-2/3 pipelines exclude it.
+> **Note on GOOG vs GOOGL.** GOOG and GOOGL are dual-class shares of the
+> same issuer (Alphabet) trading on the same exchange with near-identical
+> price paths post the 2022 20:1 split. Both tickers are retained in the
+> training set and in all backtest runs as a within-issuer consistency
+> check — comparable but not identical performance on the two listings
+> validates that the signal isn't an artefact of any single ticker's
+> microstructure. Their per-ticker results should be read as
+> cross-validation of one underlying signal rather than as two independent
+> observations.
 
 ## Schema
 

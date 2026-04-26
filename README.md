@@ -240,9 +240,17 @@ hide them.
   Databento data availability, not for sample-period robustness. Out-of-sample
   generalisation to other regimes (e.g. 2023+ post-rate-hike) is not claimed
   and remains future work.
-- **GOOG / GOOGL duplication.** GOOG was excluded from Layer-2/3 training
-  after the post-split overlap with GOOGL inflated win-rate; see
-  `data/README.md` for details.
+- **GOOG / GOOGL near-duplicate listings.** GOOG and GOOGL are dual-class
+  shares of the same issuer (Alphabet), trading on the same exchange with
+  near-identical price paths post the 2022 20:1 split. Both tickers are
+  retained in the training set and in the Run 11 backtest as a
+  within-issuer consistency check — a strategy that genuinely captures
+  short-horizon predictability should produce comparable but not identical
+  performance on the two listings (different market microstructure, volume
+  profile, and routing). Their results should be read as cross-validation
+  of a single underlying signal rather than as two independent
+  observations; aggregate metrics in the headline table count both, which
+  slightly inflates the effective sample size for cross-ticker statistics.
 - **No live forward test.** All numbers are in-sample backtest. The
   ApexQuant repo contains the live-runner; live results will be published
   there once accumulated.

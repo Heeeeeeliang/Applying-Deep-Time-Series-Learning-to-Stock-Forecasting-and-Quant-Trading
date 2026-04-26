@@ -1,7 +1,7 @@
 # Checkpoints
 
 This directory is empty in the source repo — checkpoints are published
-separately (see hosting plan below) and downloaded by `quickstart.sh`.
+separately (see hosting plan below) and downloaded manually.
 
 ## Hosting plan
 
@@ -24,17 +24,27 @@ its size, training context, SHA-1 prefix, layer, and publication target.
 | `end_to_end_pipeline` | Multi-stock phase-1 unified model used for the integrated end-to-end notebook. |
 | `exploratory` | Early 1-min LSTM runs retained for transparency; not used in the final ablation. |
 
-## Verifying after download
+## Manual download
 
-After `quickstart.sh` finishes:
+The HuggingFace bundle (`<USER>/quant-thesis-checkpoints`) can be cloned
+or downloaded with `huggingface-cli download <USER>/quant-thesis-checkpoints`.
+The per-layer GitHub Release archives are attached to the `v1.0.0` tag —
+download `checkpoints-<layer>.tar.gz` from the Releases page and extract
+into this directory.
 
-```bash
-python tools/verify_checkpoints.py
+After downloading, a quick integrity check:
+
+```python
+import torch, joblib, pandas as pd
+m = pd.read_csv("checkpoints/MANIFEST.csv")
+for path in m["path"]:
+    if path.endswith(".joblib"):
+        joblib.load(path)
+    else:
+        torch.load(path, weights_only=True)
 ```
 
-The script reads `MANIFEST.csv`, loads each file with
-`torch.load(path, weights_only=True)` (or `joblib.load` for `.joblib`),
-walks every tensor, and exits non-zero if any contains NaN or Inf. This
-catches the failure mode we hit during the original training where a CNN
-checkpoint was saved post-divergence with NaN weights. Re-run the check
-locally before publishing any new checkpoint to the manifest.
+Loading each file (with `weights_only=True` for the PyTorch ones) is
+enough to surface a corrupted download or a NaN-poisoned checkpoint —
+the failure mode we hit during the original training where a CNN
+checkpoint was saved post-divergence with NaN weights.

@@ -50,10 +50,9 @@ that time.*
 > | TimesFM (zero-shot) | 0.501 | 2.46 | 0.982 | 16,181 |
 > | TimesFM (fine-tuned, directional loss) | 0.502 | 2.48 | 0.981 | 16,181 |
 >
-> Source: `notebooks/01_direct_prediction_ceiling/` →
-> `results/ch2_standardised_results.json`. None of the differences from 50%
-> survive a one-sided z-test at α = 0.05 after the no-leakage corrections
-> described in §Methodological notes below.
+> Source: `notebooks/01_direct_prediction_ceiling/`. None of the differences
+> from 50% survive a one-sided z-test at α = 0.05 after the no-leakage
+> corrections described in §Methodological notes below.
 
 This is the empirical motivation for the three-layer decomposition that
 follows.
@@ -82,21 +81,22 @@ a TP signal AND Layer 3 passes the trade through.
 git clone https://github.com/Heeeeeeliang/Applying-Deep-Time-Series-Learning-to-Stock-Forecasting-and-Quant-Trading.git
 cd Applying-Deep-Time-Series-Learning-to-Stock-Forecasting-and-Quant-Trading
 
-# 1. Environment (conda)
+# Environment (conda)
 conda env create -f environment.yml
 conda activate quant-thesis
 
-# 2. Pull the dataset and large checkpoints from HuggingFace
-bash quickstart.sh   # downloads ~13GB into ./data/ and ./checkpoints/
-
-# 3. Run an end-to-end notebook
-jupyter lab notebooks/04_backtest_and_ablation/01_end_to_end_pipeline.ipynb
+# Open the training source or the ceiling study
+jupyter lab notebooks/training_source.ipynb
+# or
+jupyter lab notebooks/01_direct_prediction_ceiling/
 ```
 
-Smaller artifacts (split indices, results JSONs, configs, figures) ship with
-the repo. The Databento-derived OHLCV/feature CSVs and the large fine-tuned
-TimesFM checkpoints (~7.6 GB) live on HuggingFace; small per-ticker LSTM
-checkpoints (~70 MB) are attached to each tagged GitHub Release.
+Small shipped artifacts (split indices, checkpoints manifest, architecture
+figures) live in the repo. The Databento-derived OHLCV / feature CSVs and the
+large fine-tuned TimesFM checkpoints (~7.6 GB) live on HuggingFace; smaller
+per-ticker LSTM checkpoints (~70 MB) are attached to each tagged GitHub
+Release. See `data/README.md` and `checkpoints/README.md` for the
+manual-download paths.
 
 ---
 
@@ -119,9 +119,7 @@ checkpoints (~70 MB) are attached to each tagged GitHub Release.
 | **11** | **Full + Trail-Stop (final)** | **+67.2%** | **2.14** | **−9.9%** | **1,908** | **50.1%** | **2.17** |
 
 The **63.5 pp** jump between Run 4 and Run 5 is the Vol Gate's contribution
-and is the single most important component in the system. Full per-run
-breakdown: `results/ablation_table.csv`. Source configs:
-`configs/ablation/*.yaml` (Run 11 marked clearly).
+and is the single most important component in the system.
 
 ### Headline metrics (Run 11)
 
@@ -138,9 +136,6 @@ breakdown: `results/ablation_table.csv`. Source configs:
 | Profit factor | **2.17** |
 | Avg bars held | 12.3 |
 | Long / short trades | 192 / 1,716 |
-
-Source: `e:/.../runs/20260316_140416_ai_full_trail/metrics.json` →
-`results/backtest_metrics.json` (verbatim copy in this repo).
 
 ---
 
@@ -182,9 +177,7 @@ takes the CNN's probability + a small set of vol- and trend-conditioning
 features and recovers a 55–57% trade-conditional WR; combined with the
 asymmetric stop / target produced by the dynamic-execution layer, this is what
 turns the system from breakeven into Sharpe ≈ 2. Both components are
-necessary; either alone is not profitable after frictions. See
-`results/meta_label_v2_results.json` and
-`results/turning_point_summary.md`.
+necessary; either alone is not profitable after frictions.
 
 ### 3. The Vol Gate contributes ~63 pp on its own
 
@@ -217,7 +210,7 @@ hide them.
   conservative for the audience this repo targets.
 - **Lookahead in features.** A feature lookahead audit removed 2 features
   that exhibited future-information leakage; the remaining feature set is
-  documented in `schema/`.
+  documented in `data/feature_dictionary.md`.
 - **Selection of 8 tickers and the 2020–2022 window.** Both were chosen for
   Databento data availability, not for sample-period robustness. Out-of-sample
   generalisation to other regimes (e.g. 2023+ post-rate-hike) is not claimed
@@ -244,19 +237,15 @@ hide them.
 ├── notebooks/
 │   ├── README.md                          ← which notebook produces which result
 │   ├── 01_direct_prediction_ceiling/      ← the 9-method ceiling study
-│   ├── 02_volatility_layer/               ← LightGBM vol prediction
-│   ├── 03_turning_point_layer/            ← MultiScaleCNN + meta-label
-│   └── 04_backtest_and_ablation/          ← 11 ablation runs
+│   ├── training_source.ipynb              ← original Colab notebook that trained the shipped Layer-2 weights
+│   └── training_source.md                 ← which weights this notebook produced
 ├── data/
 │   ├── README.md                          ← data card
 │   ├── splits/                            ← train/val/test indices (small, in-repo)
 │   └── ...                                ← processed/, features/, tp_data/, vol_data/ ship via HuggingFace
-├── results/
-│   ├── ablation_table.csv                 ← all 11 runs, full metrics
-│   ├── backtest_metrics.json              ← Run 11 verbatim
-│   ├── ch2_standardised_results.json      ← 9-method ceiling table
-│   └── figures/                           ← exported PDF + PNG for thesis
-├── configs/                               ← one YAML per run, Run 11 marked
+├── checkpoints/
+│   ├── README.md                          ← manifest + manual-download paths
+│   └── ...                                ← shipped weights (HuggingFace / GitHub Releases)
 └── .gitignore
 ```
 

@@ -96,8 +96,9 @@ What lives where:
 - **In this git repo:** `splits/` (small CSVs), `README.md`, `feature_dictionary.md`, `splits/split_summary.json`, `splits/USAGE_EXAMPLE.py`
 - **On HuggingFace:** everything else (`processed/`, `features/`, `tp_data/`, `vol_data/`, raw Databento bar CSVs)
 
-The `quickstart.sh` script at the repo root downloads the HF dataset into
-`data/` so that the layout above becomes valid locally.
+Download the HF dataset (e.g. via `huggingface-cli download --repo-type dataset
+<USER>/quant-thesis-nasdaq-2020-2022 --local-dir data/`) so that the layout
+above becomes valid locally.
 
 ## Provenance notes
 

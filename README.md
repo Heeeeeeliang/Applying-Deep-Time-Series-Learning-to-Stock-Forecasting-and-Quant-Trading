@@ -4,7 +4,7 @@
 > analysis notebooks, the processed Databento NASDAQ ITCH dataset, and every
 > model checkpoint produced by the project. The trading platform that
 > consumes these models lives in a separate repo: see
-> [ApexQuant](https://github.com/<USER>/apexquant) (placeholder URL).
+> [ApexQuant](https://github.com/Heeeeeeliang/apexquant).
 
 ## Abstract
 

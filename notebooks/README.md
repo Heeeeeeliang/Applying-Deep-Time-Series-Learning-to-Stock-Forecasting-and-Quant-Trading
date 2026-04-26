@@ -7,7 +7,7 @@ that the full pipeline runs top-to-bottom on a fresh clone.
 | Folder | Thesis section | What it produces |
 |---|---|---|
 | `01_direct_prediction_ceiling/` | Ch. 4.1 — Direct Prediction Ceiling Study | `results/figures/fig4_1{a,b,c,d}_*.{pdf,png}`, `results/ch2_standardised_results.json` — the 9-method ~50% DA ceiling evidence |
-| `02_volatility_layer/` | Ch. 4.2 — Volatility Layer | `results/vol_prediction_v3_results.json`, LightGBM vol predictions, vol_lstm per-ticker checkpoints |
+| `02_volatility_layer/` | Ch. 4.2 — Volatility Layer | `models/layer1/volatility/lightgbm_v3_flat/{weights.joblib, meta.json, feature_names.json}` — the 119-flat-feature LightGBM (Model D) that drives the Vol Gate |
 | `03_turning_point_layer/` | Ch. 4.3 — Turning-Point Layer | `results/meta_label_v2_results.json`, `cnn_{top,bottom}_predictions.csv`, `multiscale_cnn_{top,bottom}.pt` |
 | `04_backtest_and_ablation/` | Ch. 4.4 — Backtest & Ablation | `results/ablation_table.csv`, `results/backtest_metrics.json`, `results/figures/fig_ablation*.{pdf,png}`, `fig_equity_*.{pdf,png}` |
 

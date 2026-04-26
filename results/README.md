@@ -43,7 +43,7 @@ bash quickstart.sh
 jupyter lab notebooks/01_direct_prediction_ceiling/01_nine_method_ceiling.ipynb
 
 # 3. Re-run the volatility / turning-point layers
-jupyter lab notebooks/02_volatility_layer/01_volatility_lightgbm.ipynb
+jupyter lab notebooks/02_volatility_layer/01_train_vol_lightgbm.ipynb
 jupyter lab notebooks/03_turning_point_layer/01_multiscale_cnn.ipynb
 
 # 4. Re-run the end-to-end pipeline + ablation table

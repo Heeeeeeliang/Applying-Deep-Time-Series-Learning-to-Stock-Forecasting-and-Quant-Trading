@@ -131,13 +131,13 @@ HEADERS = {
         runtime="< 10 min",
         gpu="not required",
     ),
-    "02_volatility_layer/01_volatility_lightgbm.ipynb": dict(
-        title="Layer 1 — Volatility LightGBM (Chapter 4.2)",
-        section="4.2 — volatility-regime forecaster, LightGBM with block+daily features",
-        inputs="`data/vol_data/<TICKER>_vol_{train,val,test}.csv`",
-        outputs="`results/vol_prediction_v3_results.json`, per-ticker vol_lstm checkpoints under `checkpoints/vol_lstm_<TICKER>.pt`",
-        runtime="10–20 min",
-        gpu="optional",
+    "02_volatility_layer/01_train_vol_lightgbm.ipynb": dict(
+        title="Layer 1 — Train volatility LightGBM (Chapter 4.2)",
+        section="4.2 — volatility-regime forecaster, 119-flat-feature LightGBM (Model D)",
+        inputs="`data/processed/<TICKER>_1hour.csv`",
+        outputs="`models/layer1/volatility/lightgbm_v3_flat/{weights.joblib, meta.json, feature_names.json}`",
+        runtime="5–10 min",
+        gpu="not required",
     ),
     "03_turning_point_layer/01_multiscale_cnn.ipynb": dict(
         title="Layer 2 — Turning-Point Detection with MultiScaleCNN (Chapter 4.3)",

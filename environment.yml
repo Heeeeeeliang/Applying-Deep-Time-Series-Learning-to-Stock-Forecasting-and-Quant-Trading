@@ -23,6 +23,7 @@ dependencies:
   - pip:
       - timesfm==1.2.6
       - vmdpy==0.2
+      - PyWavelets==1.6.0
       - pyts==0.13.0
       - ta==0.11.0
       - huggingface-hub==0.24.6

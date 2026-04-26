@@ -18,12 +18,20 @@
 numpy>=1.26.4
 pandas>=2.2.2
 scipy>=1.13.1
-scikit-learn>=1.5.1
+# lightgbm 4.5.0 (which trained the shipped .joblib weights)
+# calls sklearn.utils.validation.check_X_y(force_all_finite=...);
+# sklearn 1.8 removed that kwarg. Pin <1.8 until lightgbm
+# ships a version using ensure_all_finite. Verified working
+# with sklearn 1.5.x through 1.7.x.
+scikit-learn>=1.5.1,<1.8
 matplotlib>=3.8.4
 seaborn==0.13.2
 jupyterlab>=4.2.5
 ipykernel
 nbconvert
+tabulate    # pandas.DataFrame.to_markdown() backend; cell 14 of the
+            # ceiling-study notebook calls .to_markdown() to render the
+            # 9-method summary table
 tqdm>=4.66
 pyyaml==6.0.2
 torch>=2.3

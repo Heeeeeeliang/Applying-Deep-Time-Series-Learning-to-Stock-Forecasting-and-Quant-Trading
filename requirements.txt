@@ -1,0 +1,44 @@
+# Pip equivalent of environment.yml. Tested with Python 3.11
+# (matching environment.yml's python=3.11 pin).
+#
+# Pin policy: packages with the original conda env's exact pin are
+# kept exact wherever a Python 3.11 wheel exists for that version.
+# Packages whose conda-pinned version has no Python 3.13 wheel are
+# relaxed to a lower bound so the file resolves on both 3.11 and
+# 3.13 — this includes numpy, pandas, scipy, torch, matplotlib,
+# scikit-learn, jupyterlab, statsmodels, PyWavelets, pandas_ta,
+# huggingface-hub, and tqdm. The remaining packages
+# (seaborn / pyyaml / lightgbm / arch / vmdpy / pyts / ta) keep
+# the env.yml exact pin.
+#
+# GPU users: install torch with the CUDA wheel from pytorch.org
+# BEFORE running this file (e.g.  pip install --index-url
+# https://download.pytorch.org/whl/cu121 torch>=2.3) so pip
+# does not fall back to the CPU build below.
+numpy>=1.26.4
+pandas>=2.2.2
+scipy>=1.13.1
+scikit-learn>=1.5.1
+matplotlib>=3.8.4
+seaborn==0.13.2
+jupyterlab>=4.2.5
+ipykernel
+nbconvert
+tqdm>=4.66
+pyyaml==6.0.2
+torch>=2.3
+lightgbm==4.5.0
+arch==7.0.0
+statsmodels>=0.14.2
+# timesfm is optional — only required by the TimesFM cell of
+# notebooks/01_direct_prediction_ceiling/01_nine_method_ceiling.ipynb.
+# Its jaxlib==0.4.26 dep has no Python 3.13 wheel, so it is left
+# out of this base requirements file. Install separately when
+# needed (Python 3.11 recommended):
+#     pip install "timesfm>=1.0"
+vmdpy==0.2
+PyWavelets>=1.6.0
+pyts==0.13.0
+ta==0.11.0
+pandas_ta>=0.3.14b0
+huggingface-hub>=0.24.6

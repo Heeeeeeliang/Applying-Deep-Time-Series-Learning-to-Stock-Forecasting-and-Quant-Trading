@@ -91,6 +91,19 @@ jupyter lab notebooks/training_source.ipynb
 jupyter lab notebooks/01_direct_prediction_ceiling/
 ```
 
+### Without conda (pip + venv)
+
+```bash
+python -m venv .venv
+source .venv/bin/activate    # Windows: .venv\Scripts\activate
+pip install -r requirements.txt
+```
+
+`requirements.txt` mirrors `environment.yml` with pip equivalents.
+Tested with Python 3.11. GPU users: install the CUDA-matched
+`torch` wheel from <https://pytorch.org> *before* running the line
+above so pip does not fall back to the CPU build.
+
 All model checkpoints and processed datasets used in this thesis are
 attached to GitHub Release v1.0.0. See `data/README.md` and
 `checkpoints/README.md` for the per-artifact download commands.

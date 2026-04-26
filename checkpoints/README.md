@@ -56,6 +56,9 @@ from pathlib import Path
 m = pd.read_csv("checkpoints/MANIFEST.csv")
 # Only the GitHub-Release-shipped rows have files on disk after extraction.
 m = m[m["publish_target"] == "github_release"]
+# Skip the 2 exploratory checkpoints that need the original training
+# notebook's __main__ namespace to unpickle (notes == "namespace_dependent").
+m = m[m["notes"].fillna("") != "namespace_dependent"]
 
 assert len(m) == m["relative_path"].nunique(), "MANIFEST relative_path collision"
 
@@ -68,9 +71,17 @@ for _, row in m.iterrows():
         continue
     try:
         if path.suffix == ".joblib":
-            joblib.load(path)
+            joblib.load(path)              # benign InconsistentVersionWarning
+                                           # if your sklearn ≠ training-time 1.6.x
         else:
-            torch.load(path, weights_only=True)
+            # weights_only=False: the .pt files include numpy pickle
+            # metadata (numpy._core.multiarray._reconstruct) that
+            # PyTorch ≥ 2.6's stricter weights_only=True default rejects.
+            # Trust is established by the sha256 verification step
+            # before this snippet ran, not by the loader's safelist.
+            # map_location='cpu' lets CPU-only machines load weights
+            # that were saved while pinned to a CUDA device.
+            torch.load(path, map_location="cpu", weights_only=False)
     except Exception as e:
         print(f"FAIL    {path}: {e}")
         errors += 1
@@ -78,8 +89,15 @@ for _, row in m.iterrows():
 print(f"\n{len(m) - errors}/{len(m)} checkpoints loaded successfully.")
 ```
 
-The PyTorch loads use `weights_only=True` so a malformed pickle cannot
-execute arbitrary code at load time.
+Notes:
+- The two `unknown/lstm_{1min_fixed,regression_1min}/best_model.pt`
+  files are intentionally skipped — they were saved as full pickles
+  that need a `Config` dataclass redefined in `__main__`. They are
+  exploratory artifacts, not part of the headline reproduction.
+- Loading the LightGBM `.joblib` files may emit
+  `InconsistentVersionWarning` if your installed scikit-learn major
+  version differs from the training-time pin (see `environment.yml`).
+  This is benign as long as the snippet completes without raising.
 
 ## Not redistributed
 

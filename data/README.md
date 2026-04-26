@@ -100,10 +100,13 @@ Download and verify, from the repository root:
 ```bash
 gh release download v1.0.0 --pattern "apexquant_data_v1.tar.gz"
 echo "fb94e857c0918f4308956eea0f0de646050c07f90ee21a6d6baec5f5905daaa4  apexquant_data_v1.tar.gz" | sha256sum -c -
-tar -xzf apexquant_data_v1.tar.gz
+tar -xzf apexquant_data_v1.tar.gz --strip-components=1 -C data/
 ```
 
-After extraction, `data/processed/`, `data/features/`, `data/tp_data/`, and
+`--strip-components=1` drops the tarball's top-level
+`apexquant_data_v1/` directory; `-C data/` lands the contents under
+the existing `data/` directory in the cloned repo. After extraction,
+`data/processed/`, `data/features/`, `data/tp_data/`, and
 `data/vol_data/` are populated alongside the existing `data/splits/`.
 
 ## Provenance notes

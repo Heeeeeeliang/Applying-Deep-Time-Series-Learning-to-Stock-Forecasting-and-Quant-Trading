@@ -164,6 +164,79 @@ and is the single most important component in the system.
 
 ---
 
+## Reproduction
+
+This repository ships every artifact required to reproduce the headline
+backtest (Run 11) and the ceiling-study tables. The model checkpoints
+and processed datasets are attached to **GitHub Release v1.0.0**.
+
+### Release v1.0.0 — asset inventory
+
+| File | Size | sha256 | Purpose |
+|---|---:|---|---|
+| `apexquant_data_v1.tar.gz` | 1.4 GB | `fb94e857c0918f4308956eea0f0de646050c07f90ee21a6d6baec5f5905daaa4` | Processed Databento OHLCV bars, engineered features, Layer-1 vol-data arrays, Layer-2 turning-point input windows. |
+| `checkpoints-ceiling_baseline.tar.gz` | 39 MB | `5a3f1bd796b75f0be2e4ee00823f8974c52ba3dca10a5ba2cd3daf7d11677487` | 49 weights for the 9-method ceiling study (vanilla / attention / transformer LSTM). |
+| `checkpoints-layer1_volatility.tar.gz` | 2.2 MB | `2fa216508f14b13a501d3a1d339ae9685361c6a35979e400c7867b1b2b794f60` | 13 Layer-1 LSTM volatility forecasters consumed by Layer 2. |
+| `checkpoints-layer2_turning_point.tar.gz` | 871 KB | `428b3a2d557dcd7e768169405c0a6f17db1893270783f47f6860b53182c4644c` | 4 MultiScaleCNN top/bottom heads. |
+| `checkpoints-unknown.tar.gz` | 3.3 MB | `6c1034292719ef4d0396de658583c278431cd362ee9ebf24f9e4cdfa5f34cd2f` | 9 Layer-1 / Layer-3 LightGBM weights (lightgbm_v3, lightgbm_v3_flat, lgb_top_v1, lgb_bottom_v1, lgb_v2) plus 3 exploratory 1-min LSTM checkpoints. |
+| `SHA256SUMS` | 495 B | (manifest) | Aggregate hash file. `sha256sum -c SHA256SUMS` validates all five tarballs in one shot. |
+
+### Reproduction recipe (from a fresh clone)
+
+```bash
+git clone https://github.com/Heeeeeeliang/Applying-Deep-Time-Series-Learning-to-Stock-Forecasting-and-Quant-Trading.git
+cd Applying-Deep-Time-Series-Learning-to-Stock-Forecasting-and-Quant-Trading
+
+# 1. Set up environment (Python 3.11 recommended)
+python -m venv .venv
+source .venv/bin/activate      # Windows: .venv\Scripts\activate
+pip install -r requirements.txt
+
+# 2. Download all release assets and verify
+gh release download v1.0.0
+sha256sum -c SHA256SUMS         # five lines of "OK"
+
+# 3. Extract data into data/
+tar -xzf apexquant_data_v1.tar.gz --strip-components=1 -C data/
+
+# 4. Extract every checkpoint tarball into checkpoints/<layer>/
+for tar in checkpoints-*.tar.gz; do tar -xzf "$tar"; done
+
+# 5. Validate that 73 of 75 redistributable checkpoints load
+#    (the 2 namespace-dependent exploratory files are deliberately
+#     skipped — see checkpoints/README.md)
+python -c "
+import torch, joblib, pandas as pd
+from pathlib import Path
+m = pd.read_csv('checkpoints/MANIFEST.csv')
+m = m[m['publish_target'] == 'github_release']
+m = m[m['notes'].fillna('') != 'namespace_dependent']
+assert len(m) == m['relative_path'].nunique()
+errors = 0
+for _, row in m.iterrows():
+    path = Path('checkpoints') / row['relative_path']
+    if not path.exists():
+        print(f'MISSING {path}'); errors += 1; continue
+    try:
+        if path.suffix == '.joblib':
+            joblib.load(path)
+        else:
+            torch.load(path, map_location='cpu', weights_only=False)
+    except Exception as e:
+        print(f'FAIL    {path}: {e}'); errors += 1
+print(f'{len(m) - errors}/{len(m)} checkpoints loaded successfully.')
+"
+# Expected: 73/73 checkpoints loaded successfully.
+```
+
+The headline 9-method ceiling table is produced by
+`notebooks/01_direct_prediction_ceiling/03_baseline_models.ipynb`.
+See [`notebooks/01_direct_prediction_ceiling/README.md`](notebooks/01_direct_prediction_ceiling/README.md)
+for per-notebook execution order and notes on the optional
+Python-3.11 environment required for the two TimesFM rows.
+
+---
+
 ## Citation
 
 ```bibtex

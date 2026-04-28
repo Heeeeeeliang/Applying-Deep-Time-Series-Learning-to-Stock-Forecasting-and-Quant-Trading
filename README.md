@@ -125,6 +125,14 @@ together with the data and split files in this repo).
 
 ---
 
+## Data
+
+Market-data inputs come from the **Nasdaq TotalView-ITCH** feed accessed via **Databento**. Specifically, this study uses Databento's `XNAS.ITCH` dataset aggregated to 1-minute, 15-minute, 1-hour and daily OHLCV bars from 2020-01-07 through 2022-09-30 across 8 tickers (AAPL, MSFT, GOOG, GOOGL, NVDA, TSLA, SPY, QQQ).
+
+The processed bars and engineered features redistributed in `apexquant_data_v1.tar.gz` (Release v1.0.0) are derived works. Per Databento's [historical data policy](https://databento.com/blog/introduction-market-data-licensing), T+1 historical Nasdaq market data does not require additional licensing for redistribution. See [`data/README.md`](data/README.md) for the full data card. If you use this dataset, please cite both this repository and Databento.
+
+---
+
 ## Results
 
 ### Ablation — incremental contribution of each component
@@ -369,6 +377,12 @@ hide them.
 - Das, R. _et al._ (2024). _A decoder-only foundation model for time-series
   forecasting_ (TimesFM). — used here as the zero-shot and fine-tuned
   baseline in the ceiling study.
+
+## License
+
+MIT. See [`LICENSE`](LICENSE).
+
+Bar-aggregated OHLCV market data redistributed in Release v1.0.0 is governed by Databento's historical-data policy (see [`data/README.md`](data/README.md) and [`NOTICE`](NOTICE)), not the MIT License of the code.
 
 ## Acknowledgement of Generative AI Use
 

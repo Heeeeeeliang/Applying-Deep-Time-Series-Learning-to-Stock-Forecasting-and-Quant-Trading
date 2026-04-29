@@ -57,8 +57,6 @@ follows.
 
 ## Three-layer framework
 
-![System architecture](docs/figures/fig_system_architecture.png)
-
 | Layer | Task | Model | Why this layer is easier than direct prediction |
 |---|---|---|---|
 | **1 — Volatility regime** | Forecast next-window realised volatility (regression + sign-of-trend) | LightGBM on 40 engineered features + LSTM-block embeddings | Volatility clusters; directional accuracy 80–84% (vs. 50% for price) |

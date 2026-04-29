@@ -363,14 +363,6 @@ hide them.
 
 - **ApexQuant** — the production trading platform that consumes the models
   and configs in this repo: https://github.com/Heeeeeeliang/apexquant.
-- Databento. _NASDAQ TotalView-ITCH historical bars._
-  https://databento.com/datasets/XNAS.ITCH
-- Lopez de Prado, M. (2018). _Advances in Financial Machine Learning_.
-  Wiley. — Chapter 3 (meta-labelling) is the basis for the Layer-3 trade
-  filter.
-- Das, R. _et al._ (2024). _A decoder-only foundation model for time-series
-  forecasting_ (TimesFM). — used here as the zero-shot and fine-tuned
-  baseline in the ceiling study.
 
 ## License
 
@@ -384,9 +376,7 @@ This project was developed with assistance from generative AI
 tools. Claude Code (Anthropic) was used to assist with
 implementation tasks: generating boilerplate, writing tests,
 diagnosing bugs, and producing repository reproducibility
-audits. Claude (Anthropic, web/desktop) was used as a
-discussion partner for architectural decisions and for prompt
-engineering. All generated code was reviewed, tested, and
+audits. All generated code was reviewed, tested, and
 integrated by the author. The research design, the three-layer
 cascaded framework, the empirical findings, the model
 architectures, and all results are the author's original work.

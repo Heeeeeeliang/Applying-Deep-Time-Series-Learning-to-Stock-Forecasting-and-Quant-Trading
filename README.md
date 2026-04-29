@@ -27,10 +27,6 @@ gate). Composed end-to-end and back-tested on 8 NASDAQ tickers from
 maximum drawdown −9.9%, 1,908 trades, profit factor 2.17 (Run 11 — trail-stop
 variant)**.
 
-*The full thesis PDF will be added to this repository after academic
-submission (post April 29, 2026). Citation details will be updated at
-that time.*
-
 ---
 
 ## Central finding
